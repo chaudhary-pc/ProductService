@@ -1,5 +1,6 @@
 package org.example.productservice.controllers;
 
+import org.example.productservice.commons.AuthenticationCommons;
 import org.example.productservice.exceptions.CategoryNotExistException;
 import org.example.productservice.exceptions.ProductNotExistException;
 import org.example.productservice.models.Category;
@@ -11,18 +12,33 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
     private ProductService productService;
+    private AuthenticationCommons authenticationCommons;
     @Autowired
-    public ProductController(@Qualifier("SelfProductService") ProductService productService){
+    public ProductController(@Qualifier("SelfProductService") ProductService productService, AuthenticationCommons authenticationCommons){
         this.productService = productService;
+        this.authenticationCommons = authenticationCommons;
     }
     @GetMapping()
-    public List<Product> getAllProducts(){
-        return productService.getAllProducts();
+    public ResponseEntity<List<Product>> getAllProducts(){
+//        for Testing the test case
+//        List<Product> products =  productService.getAllProducts();
+//        List<Product> result = new ArrayList<>();
+//        for(Product prod: products){
+//            prod.setTitle("Hey "+prod.getTitle());
+//            result.add(prod);
+//        }
+//        return result;
+
+//        if(authenticationCommons.validateToken(token) == null){
+//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+//        }
+        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
     @GetMapping("/{id}")
     public ResponseEntity<Product> getSingleProduct(@PathVariable("id") Long id) throws ProductNotExistException {

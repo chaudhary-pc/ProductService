@@ -5,7 +5,6 @@ CREATE TABLE category
     last_updated_at datetime NULL,
     is_deleted      BIT(1) NOT NULL,
     name            VARCHAR(255) NULL,
-    `description`   VARCHAR(255) NULL,
     CONSTRAINT pk_category PRIMARY KEY (id)
 );
 
@@ -69,8 +68,8 @@ CREATE TABLE sc_user
     user_type       INT NULL,
     name            VARCHAR(255) NULL,
     email           VARCHAR(255) NULL,
-    teaching_domain VARCHAR(255) NULL,
     average_rating DOUBLE NOT NULL,
+    teaching_domain VARCHAR(255) NULL,
     CONSTRAINT pk_sc_user PRIMARY KEY (id)
 );
 

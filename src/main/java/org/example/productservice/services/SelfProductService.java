@@ -13,8 +13,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service("SelfProductService")
-//@Primary  -> now this class gets priority and spring will return selfProductService object
+@Primary
+//now this class gets priority and spring will return selfProductService object
 //but if we use primary in more than 2 classes then again same issue so use Qualifier
 public class SelfProductService implements ProductService{
     private ProductRepository productRepository;
