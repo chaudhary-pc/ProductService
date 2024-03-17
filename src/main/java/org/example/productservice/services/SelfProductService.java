@@ -15,7 +15,7 @@ import java.util.Optional;
 
 
 @Service("SelfProductService")
-@Primary
+//@Primary
 //now this class gets priority and spring will return selfProductService object
 //but if we use primary in more than 2 classes then again same issue so use Qualifier
 public class SelfProductService implements ProductService{
